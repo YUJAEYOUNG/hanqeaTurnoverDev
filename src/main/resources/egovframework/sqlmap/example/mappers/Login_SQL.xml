@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.login.service.impl.LoginMapper">
+	
+	<!-- 회원정보 조회 -->
+	<select id="selectLoginUsr" parameterType="map" resultType="loginVO">
+		SELECT M.USER_ID       AS USER_ID       /* 회원 아이디     */
+		      ,M.USER_NM       AS USER_NM       /* 회원 명         */
+		      ,M.USER_NICK     AS USER_NICK     /* 회원 닉네임     */
+		      ,M.USER_PHONE    AS USER_PHONE    /* 회원 전화번호   */
+		  FROM MEMBER          M
+		 WHERE M.USER_ID       = #{id}
+		   AND M.USER_PW       = #{pw}
+	</select>
+	<!-- // 회원정보 조회 -->
+	
+</mapper>

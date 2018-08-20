@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+ 
+<tiles-definitions>
+	
+	<!-- 기본 타일즈 셋팅 -->
+	<definition name="layouts-tiles" template="/WEB-INF/jsp/egovframework/example/cmmn/tiles-basic/default-layouts.jsp">
+	  	<put-attribute name="header"    	value="/WEB-INF/jsp/egovframework/example/cmmn/tiles-basic/default-header.jsp" />
+	  	<put-attribute name="nav"    		value="/WEB-INF/jsp/egovframework/example/cmmn/tiles-basic/default-nav.jsp" />
+	  	<put-attribute name="content"    	value="" />
+	  	<put-attribute name="left"   		value="/WEB-INF/jsp/egovframework/example/cmmn/tiles-basic/default-left.jsp" />
+	  	<put-attribute name="footer"    	value="/WEB-INF/jsp/egovframework/example/cmmn/tiles-basic/default-footer.jsp" />
+	</definition>
+	
+	<definition name="*/*.tiles" extends="layouts-tiles">
+	  	<put-attribute name="content"   value="/WEB-INF/jsp/egovframework/example/{1}/{2}.jsp" />
+	</definition>
+	<!-- 기본 타일즈 셋팅 // -->
+	
+	<!-- 타일즈 타입2 (로그인 + @) -->
+	<definition name="layouts-tiles2" template="/WEB-INF/jsp/egovframework/example/cmmn/tiles-type-login/default-layouts.jsp">
+	  	<put-attribute name="header"    	value="/WEB-INF/jsp/egovframework/example/cmmn/tiles-type-login/default-header.jsp" />
+	  	<put-attribute name="nav"    		value="/WEB-INF/jsp/egovframework/example/cmmn/tiles-type-login/default-nav.jsp" />
+	  	<put-attribute name="content"    	value="" />
+	  	<put-attribute name="left"   		value="/WEB-INF/jsp/egovframework/example/cmmn/tiles-type-login/default-left.jsp" />
+	  	<put-attribute name="footer"    	value="/WEB-INF/jsp/egovframework/example/cmmn/tiles-type-login/default-footer.jsp" />
+	</definition>
+	
+	<definition name="*/*.dif_tiles" extends="layouts-tiles2">
+	  	<put-attribute name="content"   value="/WEB-INF/jsp/egovframework/example/{1}/{2}.jsp" />
+	</definition>
+	<!-- 타일즈 타입2 (로그인 + @) // -->
+	
+</tiles-definitions>
