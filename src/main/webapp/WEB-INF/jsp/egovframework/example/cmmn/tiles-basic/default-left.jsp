@@ -7,47 +7,63 @@
 <%@ taglib prefix="fn" 		uri="http://java.sun.com/jsp/jstl/functions"%>
 
 	<script type="text/javascript">
-		
-		$(document).ready(function() {
-			// 메뉴 객체 생성
-			var Menu	= {
-				
-				menuTarget	: $("#menuStart"),
-				
-				menuInit	: function() {
-					var that		= this;
-					var paramData	= {};
-					
-					cmmnLib.callAjax("/mainMenuList.do", paramData, "get", function(result) {
-						var strMenu	= "";
-						
-						$.each(result, function(i, item) {
-							// 하위 메뉴 없을 시
-							if (cmmnLib.validNullChk(item.menuParentId)) {
-								strMenu += '<li class="menu active" id="menu' + item.menuId + '" data-url="' + item.menuUrl + '">'
-		                        		+      '<a href="#">'
-		                        		+         '<i class="' + item.menuSeq + '"></i>'
-		                        		+         '<p>' + item.menuNm + '</p>'
-		                        		+      '</a>'
-		                        		+  '</li>';
-		                  
-		                    	that.menuTarget.append(strMenu);
-							} else {
-								
-							}
-						});
-					});
-				},
-				
-				menuMake	: function(result) {
-					console.log("result ::: ", result);
-				},
-				
-				subMenuMake	: function(Obj) {
-					
-				}
-			};
+		// 메뉴 객체 생성
+		var Menu	= {
+			menuTarget	: $("#menuStart"),
 			
+			menuInit	: function() {
+				var that		= this;
+				var paramData	= {};
+				
+				cmmnLib.callAjax("/mainMenuList.do", paramData, "get", function(result) {
+					var strMenu	= "";
+					
+					$.each(result, function(i, item) {
+						// 하위 메뉴 없을 시
+						if (cmmnLib.validNullChk(item.menuParentId)) {
+                    		strMenu	+=	'<li class="">'
+                    				+		'<a href="' + item.menuUrl + '">'
+                    				+			'<i class="' + item.menuClass + '"></i> '
+                    				+			item.menuNm
+                    				+		'</a>'
+                    				+	'</li>';
+						} else {
+							strMenu	+=	'<li class="">'
+                					+		'<a href="' + item.menuUrl + '">'
+                					+			'<i class="' + item.menuClass + '"></i> '
+                					+			item.menuNm
+                					+		'</a>'
+                					+		'<ul>' + that.subMenuInit(item.menuId) + '</ul>'
+                					+	'</li>';
+						}
+					});
+					
+					that.menuTarget.append(strMenu);
+				});
+			},
+			
+			subMenuInit	: function(obj) {
+				alert("1");
+				var that 		= this;
+				var paramData	= {"menuId" : obj};
+				var strSubMenu	= "";
+				
+				cmmnLib.callAjax("/subMenuList.do", paramData, "get", function(result) {
+					
+					$.each(result, function(i, item) {
+						strSubMenu	+=	'<li>'
+									+		'<a href="' + item.menuUrl + '">'
+									+			'' + item.menuNm + ' <span class="' + item.menuClass + '"></span>'
+									+		'</a>'
+									+	'</li>';
+					});
+				});
+				
+				return strSubMenu;
+			}
+		};
+	
+		$(document).ready(function() {
 			Menu.menuInit();
 		});
 		
