@@ -4,16 +4,32 @@
 	
 	<!-- 메뉴 리스트 가져오기(최상위) -->
 	<select id="selectMainMenuList" parameterType="map" resultType="egovMap">
-		SELECT M.MENU_ID        AS MENU_ID          /* 메뉴 아이디       */
-		      ,M.MENU_PARENT_ID AS MENU_PARENT_ID   /* 메뉴 부모 아이디  */
-		      ,M.MENU_NM        AS MENU_NM          /* 메뉴 명           */
-		      ,M.MENU_SEQ       AS MENU_SEQ         /* 메뉴 순서         */
-		      ,M.MENU_LVL       AS MENU_LVL         /* 메뉴 레벨(DEPTH)  */
-		      ,M.MENU_URL       AS MENU_URL         /* 메뉴 경로(주소)   */
-		  FROM MENU M                               /* [T] 메뉴          */
-		 WHERE M.USE_YN         = 'N'
+		SELECT M.MENU_ID        AS MENU_ID          /* 메뉴 아이디         */
+		      ,M.MENU_PARENT_ID AS MENU_PARENT_ID   /* 메뉴 부모 아이디    */
+		      ,M.MENU_NM        AS MENU_NM          /* 메뉴 명             */
+		      ,M.MENU_SEQ       AS MENU_SEQ         /* 메뉴 순서           */
+		      ,M.MENU_LVL       AS MENU_LVL         /* 메뉴 레벨(DEPTH)    */
+		      ,M.MENU_URL       AS MENU_URL         /* 메뉴 경로(주소)     */
+		      ,M.MENU_CLASS     AS MENU_CLASS       /* 메뉴 클래스(아이콘) */
+		  FROM MENU M                               /* [T] 메뉴            */
+		 WHERE M.USE_YN         = 'Y'
 		   AND M.MENU_PARENT_ID IS NULL
 	</select>
 	<!-- 메뉴 리스트 가져오기(최상위) // -->
+	
+	<!-- 서브 메뉴 리스트 가져오기 -->
+	<select id="selectSubMenuList" parameterType="String" resultType="egovMap">
+		SELECT M.MENU_ID        AS MENU_ID          /* 메뉴 아이디         */
+		      ,M.MENU_PARENT_ID AS MENU_PARENT_ID   /* 메뉴 부모 아이디    */
+		      ,M.MENU_NM        AS MENU_NM          /* 메뉴 명             */
+		      ,M.MENU_SEQ       AS MENU_SEQ         /* 메뉴 순서           */
+		      ,M.MENU_LVL       AS MENU_LVL         /* 메뉴 레벨(DEPTH)    */
+		      ,M.MENU_URL       AS MENU_URL         /* 메뉴 경로(주소)     */
+		      ,M.MENU_CLASS     AS MENU_CLASS       /* 메뉴 클래스(아이콘) */
+		  FROM MENU M                               /* [T] 메뉴            */
+		 WHERE M.USE_YN         = 'Y'
+		   AND M.MENU_PARENT_ID = #{_parameter}
+	</select>
+	<!-- 서브 메뉴 리스트 가져오기 // -->
 	
 </mapper>

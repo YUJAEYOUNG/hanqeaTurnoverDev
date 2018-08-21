@@ -59,4 +59,20 @@ public class MainController extends BasicController {
 		
 		return JsonUtil.ListToJson(mainMenuList);
 	}
+	
+	/**
+	 * ========================================
+	 * 작성자 | 유재영 
+	 * 설명   | 서브메뉴 리스트 가져오기
+	 * ========================================
+	 */
+	@RequestMapping(value = "/subMenuList.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String subMenuList(HttpServletRequest request) throws Exception {
+		String menuId	= request.getParameter("menuId");
+		
+		List<Map<String, Object>> subMenuList = mainService.selectSubMenuList(menuId);
+		
+		return JsonUtil.ListToJson(subMenuList);
+	}
 }

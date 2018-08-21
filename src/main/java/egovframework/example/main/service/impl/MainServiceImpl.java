@@ -33,5 +33,16 @@ public class MainServiceImpl implements MainService {
 	public List<Map<String, Object>> selectMainMenuList() throws Exception {
 		return mainMapper.selectMainMenuList();
 	}
+	
+	/**
+	 * ========================================
+	 * 작성자 | 유재영 
+	 * 설명   | 서브메뉴 리스트 가져오기
+	 * ========================================
+	 */
+	@Override
+	public List<Map<String, Object>> selectSubMenuList(String menuId) throws Exception {
+		return mainMapper.selectSubMenuList(menuId);
+	}
 
 }

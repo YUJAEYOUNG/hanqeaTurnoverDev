@@ -20,5 +20,13 @@ public interface MainService {
 	 * ========================================
 	 */
 	List<Map<String, Object>> selectMainMenuList() throws Exception;
+	
+	/**
+	 * ========================================
+	 * 작성자 | 유재영 
+	 * 설명   | 서브메뉴 리스트 가져오기
+	 * ========================================
+	 */
+	List<Map<String, Object>> selectSubMenuList(String menuId) throws Exception;
 
 }
