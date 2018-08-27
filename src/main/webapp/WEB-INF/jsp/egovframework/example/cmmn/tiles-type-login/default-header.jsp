@@ -53,3 +53,5 @@
 	<link rel="stylesheet" href="css/custom/kdy.css" />
 	<link rel="stylesheet" href="css/custom/jcy.css" />
 	<!-- // 사용자 정의 css -->
+	
+	<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>

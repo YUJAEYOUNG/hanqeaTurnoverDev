@@ -9,18 +9,18 @@
 	<script type="text/javascript">
 		// 메뉴 객체 생성
 		var Menu	= {
-			menuTarget	: $("#menuStart"),
-			
+			$menuTarget	: $("#menuStart"),
+			// 메뉴 리스트 생성
 			menuInit	: function() {
 				var that		= this;
 				var paramData	= {};
 				
 				cmmnLib.callAjax("/mainMenuList.do", paramData, "get", function(result) {
-					var strMenu	= "";
 					
 					$.each(result, function(i, item) {
+						var strMenu	= "";
 						// 하위 메뉴 없을 시
-						if (cmmnLib.validNullChk(item.menuParentId)) {
+						if (item.menuChildYn === "N") {
                     		strMenu	+=	'<li class="">'
                     				+		'<a href="' + item.menuUrl + '">'
                     				+			'<i class="' + item.menuClass + '"></i> '
@@ -29,21 +29,21 @@
                     				+	'</li>';
 						} else {
 							strMenu	+=	'<li class="">'
-                					+		'<a href="' + item.menuUrl + '">'
+                					+		'<a>'
                 					+			'<i class="' + item.menuClass + '"></i> '
                 					+			item.menuNm
                 					+		'</a>'
                 					+		'<ul>' + that.subMenuInit(item.menuId) + '</ul>'
                 					+	'</li>';
 						}
+						
+						$("#menuStart").append(strMenu);
 					});
 					
-					that.menuTarget.append(strMenu);
 				});
 			},
-			
+			// 서브 메뉴리스트 생성
 			subMenuInit	: function(obj) {
-				alert("1");
 				var that 		= this;
 				var paramData	= {"menuId" : obj};
 				var strSubMenu	= "";
@@ -51,11 +51,21 @@
 				cmmnLib.callAjax("/subMenuList.do", paramData, "get", function(result) {
 					
 					$.each(result, function(i, item) {
-						strSubMenu	+=	'<li>'
-									+		'<a href="' + item.menuUrl + '">'
-									+			'' + item.menuNm + ' <span class="' + item.menuClass + '"></span>'
-									+		'</a>'
-									+	'</li>';
+						// 하위 메뉴 없을 시
+						if (item.menuChildYn === "N") {
+							strSubMenu	+=	'<li>'
+										+		'<a href="' + item.menuUrl + '">'
+										+			'' + item.menuNm + ' <span class="' + item.menuClass + '"></span>'
+										+		'</a>'
+										+	'</li>';
+						} else {
+							strSubMenu	+=	'<li>'
+										+		'<a>'
+										+			'' + item.menuNm + ' <span class="' + item.menuClass + '"></span>'
+										+		'</a>'
+										+       '<ul>' + that.subMenuInit(item.menuId) + '</ul>'
+										+	'</li>';
+						}
 					});
 				});
 				

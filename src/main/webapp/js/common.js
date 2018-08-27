@@ -44,6 +44,7 @@ var cmmnLib = {
 			data	: param,
 			type	: type,
 			cache	: false,
+			async	: false,
 			success	: onSuccess,
 			
 			error	: function(xhr, errMsg) {

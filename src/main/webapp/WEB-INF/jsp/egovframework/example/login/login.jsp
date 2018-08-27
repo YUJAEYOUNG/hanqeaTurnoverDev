@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" 		uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" 	uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" 	uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="ui" 		uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="fn" 		uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" 	uri="http://www.springframework.org/tags"%>
 <!-- 
 	* ========================================
 	* 작성자   | 유재영 
@@ -328,6 +328,7 @@
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/tooltips.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 
 
 <!-- Style Switcher
@@ -362,7 +363,25 @@
 <!-- Style Switcher / End -->
 
 <script type="text/javascript">
-
+	
+	// 로그인 실행
+	function loginPcs() {
+		
+		if (cmmnLib.validNullChk($("#userId").val())) {
+			alert("아이디를 입력해주세요.");
+			return false;
+		}
+		
+		if (cmmnLib.validNullChk($("#userPw").val())) {
+			alert("패스워드를 입력해주세요.");
+			return false;
+		}
+		
+		$("#loginFrm").attr("action", "/actionLogin.do");
+		
+		$("#loginFrm").submit();
+	}
+	
 	$(document).ready(function() {
 		
 		<c:if test="${eSangMu == 'Y'}">
@@ -371,6 +390,7 @@
 			$("#joinVO").submit();
     	</c:if>
     	<c:if test="${eSangMu == 'N'}">
+    		$("#registerBtn").trigger("click");
     		alert("회원가입에 실패했습니다.");
     	</c:if>
     
@@ -383,10 +403,17 @@
 		
 		// 로그인 버튼 클릭
 		$("#loginBtn").click(function() {
-			$("#loginFrm").attr("action", "/actionLogin.do");
-			
-			$("#loginFrm").submit();
+			loginPcs();
 		});
+		
+		// 로그인 엔터키 처리
+		$("#userPw").keydown(function(e) {
+			
+			if (e.keyCode == 13) {
+				loginPcs();
+			}
+		});
+		
 	});
 	
 </script>
