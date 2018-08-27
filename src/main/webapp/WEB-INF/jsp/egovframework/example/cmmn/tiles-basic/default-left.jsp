@@ -20,7 +20,7 @@
 					$.each(result, function(i, item) {
 						var strMenu	= "";
 						// 하위 메뉴 없을 시
-						if (item.menuChildYn === "N") {
+						if (item.menuChildYn === "N") { 
                     		strMenu	+=	'<li class="">'
                     				+		'<a href="' + item.menuUrl + '">'
                     				+			'<i class="' + item.menuClass + '"></i> '
