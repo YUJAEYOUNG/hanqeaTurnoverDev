@@ -383,6 +383,11 @@
 	}
 	
 	$(document).ready(function() {
+		var loginSuccessYn	= "${success}";
+		
+		if (loginSuccessYn === "N") {
+			alert("로그인에 실패했습니다.");
+		}
 		
 		<c:if test="${eSangMu == 'Y'}">
 			$("#joinVO").attr("action", "/insertUsrInfo.do");

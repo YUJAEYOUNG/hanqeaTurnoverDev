@@ -58,14 +58,16 @@
 										+			'' + item.menuNm + ' <span class="' + item.menuClass + '"></span>'
 										+		'</a>'
 										+	'</li>';
-						} else {
+						}
+						/*  ※ 하위 메뉴 레벨 별 구현 되어 있으나, 부트스트랩은 2 뎁스 모양까지만 구현!
+						else {
 							strSubMenu	+=	'<li>'
 										+		'<a>'
 										+			'' + item.menuNm + ' <span class="' + item.menuClass + '"></span>'
 										+		'</a>'
 										+       '<ul>' + that.subMenuInit(item.menuId) + '</ul>'
 										+	'</li>';
-						}
+						} */
 					});
 				});
 				
@@ -89,15 +91,6 @@
 		<div class="dashboard-nav-inner">
 
 			<ul data-submenu-title="개인 포트폴리오" id="menuStart">
-				<!-- <li class="active"><a href="dashboard.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-				<li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i> Messages <span class="nav-tag messages">2</span></a></li>
-				<li><a><i class="sl sl-icon-layers"></i> My Listings</a>
-					<ul>
-						<li><a href="dashboard-my-listings.html">Active 6</span></a></li>
-						<li><a href="dashboard-my-listings.html">Pending <span class="nav-tag yellow">1</span></a></li>
-						<li><a href="dashboard-my-listings.html">Expired <span class="nav-tag red">2</span></a></li>
-					</ul>	
-				</li> -->
 			</ul>
 			
 		</div>

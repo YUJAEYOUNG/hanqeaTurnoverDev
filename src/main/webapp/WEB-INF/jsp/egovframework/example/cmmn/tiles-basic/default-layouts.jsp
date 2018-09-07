@@ -4,18 +4,22 @@
 <!doctype html>
 <html class="no-js" lang="en">
 	<head>
-   		<tiles:insertAttribute name="header"/>
+   		<tiles:insertAttribute name="header" />
 	</head>
 	<body>
 		<!-- Wrapper -->
 		<div id="wrapper">
-			<tiles:insertAttribute name="nav"/>
+			<tiles:insertAttribute name="nav" />
 			<!-- Dashboard -->
 			<div id="dashboard">
-				<tiles:insertAttribute name="left"/>
-				<tiles:insertAttribute name="content"/>
+				<tiles:insertAttribute name="left" />
+				<div class="dashboard-content">
+					<!-- 타이틀 바 영역 -->
+					<tiles:insertAttribute name="titlebar" />
+					<!-- 작업 영역 -->
+					<tiles:insertAttribute name="content" />
+				</div>
 			</div>
-			<!-- Dashboard / END -->
 		</div>
 	</body>
 	

@@ -47,18 +47,21 @@ public class LoginController extends BasicController {
 	 */
 	@RequestMapping(value = "/actionLogin.do")
 	public String actionLogin(HttpServletRequest request,
-			ModelMap model) throws Exception {
+			ModelMap model,
+			@ModelAttribute JoinVO joinVO) throws Exception {
 		String id		= request.getParameter("userId");
 		String password	= request.getParameter("userPw");
 		
 		LoginVO resVO	= loginService.selectLoginUsr(id, password);
 		
-		if (resVO.getUserId() != null) {
+		System.out.println("resVO ::: " + resVO.toString());
+		
+		if (resVO.getUserId() != null && !resVO.getUserId().equals("")) {
 			request.getSession().setAttribute("loginVO", resVO);
 			
 			return "redirect:/main.do";
 		} else {
-			model.addAttribute("message", "로그인 실패");
+			model.addAttribute("success", "N");
 			return "login/login";
 		}
 	}

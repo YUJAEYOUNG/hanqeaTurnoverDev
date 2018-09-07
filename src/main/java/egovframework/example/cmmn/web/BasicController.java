@@ -6,8 +6,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import egovframework.example.cmmn.util.SessionUtil;
+import egovframework.example.login.service.LoginVO;
 
 /**
  * ========================================
@@ -24,7 +28,21 @@ public class BasicController {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         return attributes.getRequest();
 	}
-
+	
+	/**
+	 * 
+	 * @Method Name : getLoginInfo
+	 * @작성일 		: 2018-08-27
+	 * @작성자		: 유재영
+	 * @Method 설명	: 세션정보 VO 형태로 공통 가져오기 (!! 안돼자나 !!)
+	 * @param obj
+	 * @return
+	 */
+	@ModelAttribute("loginVO")
+	public LoginVO getLoginInfo() throws Exception {
+		return SessionUtil.getLoginVODataToVO();
+	}
+	
 	/**
 	 * 
 	 * @Method Name : ObjectToString
