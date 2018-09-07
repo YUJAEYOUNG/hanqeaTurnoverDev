@@ -54,8 +54,6 @@ public class LoginController extends BasicController {
 		
 		LoginVO resVO	= loginService.selectLoginUsr(id, password);
 		
-		System.out.println("resVO ::: " + resVO.toString());
-		
 		if (resVO.getUserId() != null && !resVO.getUserId().equals("")) {
 			request.getSession().setAttribute("loginVO", resVO);
 			

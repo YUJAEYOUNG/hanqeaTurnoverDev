@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.calendar.service.impl.CalendarMapper">
+	
+	<!-- 회원 일정 정보 조회 -->
+	<select id="selectCalendarList" parameterType="map" resultType="egovMap">
+		SELECT S.SCHE_NO              AS SCHE_NO            /* 스케줄 시퀀스 번호  */
+		      ,S.SCHE_NM              AS SCHE_NM            /* 스케줄 명           */
+		      ,S.SCHE_DESC            AS SCHE_DESC          /* 스케줄 설명         */
+		      ,S.SCHE_START_DT        AS SCHE_START_DT      /* 스케줄 시작일       */
+		      ,S.SCHE_START_TIME      AS SCHE_START_TIME    /* 스케줄 시작 시간    */
+		      ,S.SCHE_END_DT          AS SCHE_END_DT        /* 스케줄 종료일       */
+		      ,S.SCHE_END_TIME        AS SCHE_END_TIME      /* 스케줄 종료 시간    */
+		      ,S.SCHE_PRIORITY        AS SCHE_PRIORITY      /* 스케줄 중요도       */
+		      ,S.SCHE_CTG_CD          AS SCHE_CTG_CD        /* 스케줄 분류         */
+		  FROM SCHEDULE                S                    /* [T] 스케줄          */
+		<where>                                          
+		    S.USER_ID = #{userId}
+			<if test="date != null and date != '' and date != 'all'">
+				AND SUBSTR(S.SCHE_START_DT, 1, 6) = #{date}
+				AND SUBSTR(S.SCHE_END_DT, 1, 6)   = #{date}
+			</if>
+		</where>
+	</select>
+	<!-- // 회원 일정 정보 조회 -->
+	
+</mapper>
