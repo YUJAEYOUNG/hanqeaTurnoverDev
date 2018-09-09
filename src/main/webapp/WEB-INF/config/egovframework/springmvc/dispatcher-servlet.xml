@@ -12,12 +12,27 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
-
+    	
+    <!-- MessageConverter 설정 Ex) @RequestBody -->
+    <mvc:annotation-driven>
+	   <mvc:message-converters register-defaults="true">
+	       <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+	           <property name="supportedMediaTypes">
+	               <list>
+	                   <value>text/html;charset=UTF-8</value>
+	                   <value>application/json;charset=UTF-8</value>
+	               </list>
+	           </property>
+	       </bean>
+	   </mvc:message-converters>  
+	</mvc:annotation-driven>
+	
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="webBindingInitializer">
             <bean class="egovframework.example.cmmn.web.EgovBindingInitializer"/>
         </property>
     </bean>
+    
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
         <property name="interceptors">
             <list>
@@ -77,4 +92,17 @@
 	<!-- /For Pagination Tag -->
 
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
+    
+    <!-- [Setting By " JongMun "] -->
+    <!-- 
+    	[Desc] : Web.xml 에서 .do로 설정 할 경우 Ex) Js파일의 ResTFul 통신 같은 경우 제대로 이루어 지지 않아 Web.xml에서 servlet-mapping 의
+    			 url Pattern   *.do >> / 로 변경.    /로 변경시에는  image, js ,css 등 정적 Cotents 호출 불가의 문제 발생. 
+    			 문제 해결을 위해 해당 자원엗 대한 mapping 을 기준으로 실제 location을 지정.
+      -->
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+
+
 </beans>
