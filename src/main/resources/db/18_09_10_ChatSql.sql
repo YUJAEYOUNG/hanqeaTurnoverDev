@@ -17,7 +17,7 @@ CREATE DATABASE IF NOT EXISTS `hanqeaturnover` /*!40100 DEFAULT CHARACTER SET ut
 USE `hanqeaturnover`;
 
 
-UPDATE menu SET `MENU_URL`='/webChat/community.do' WHERE  `MENU_ID`='MENU0002';
+UPDATE menu SET MENU_URL='/webChat/community.do' WHERE  MENU_ID='MENU0002';
 
 -- 테이블 hanqeaturnover.chat_join_entry 구조 내보내기
 CREATE TABLE IF NOT EXISTS `chat_join_entry` (
