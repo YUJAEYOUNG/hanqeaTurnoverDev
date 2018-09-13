@@ -56,7 +56,6 @@ public class LoginController extends BasicController {
 		
 		if (resVO.getUserId() != null && !resVO.getUserId().equals("")) {
 			request.getSession().setAttribute("loginVO", resVO);
-			
 			return "redirect:/main.do";
 		} else {
 			model.addAttribute("success", "N");

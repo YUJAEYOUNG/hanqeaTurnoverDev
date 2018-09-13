@@ -13,8 +13,8 @@
 				
 				<!-- Logo -->
 				<div id="logo">
-					<a href="/main.do"><img src="images/logo.png" alt=""></a>
-					<a href="/main.do" class="dashboard-logo"><img src="images/logo2.png" alt=""></a>
+					<a href="/main.do"><img src="/images/logo.png" alt=""></a>
+					<a href="/main.do" class="dashboard-logo"><img src="/images/logo2.png" alt=""></a>
 				</div>
 	
 				<!-- Mobile Navigation -->

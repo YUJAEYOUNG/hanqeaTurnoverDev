@@ -11,5 +11,6 @@
 		<typeAlias alias="sampleVO" type="egovframework.example.sample.service.SampleVO"/>
 		<typeAlias alias="loginVO" 	type="egovframework.example.login.service.LoginVO"/>
 		<typeAlias alias="joinVO" 	type="egovframework.example.join.service.JoinVO"/>
+		<typeAlias alias="chatRoomVO" 	type="egovframework.example.webChat.service.ChatRoomVO"/>
     </typeAliases>
 </configuration>
